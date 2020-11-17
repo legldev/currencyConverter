@@ -1,5 +1,5 @@
 
-html, body, .grid-container { 
+html, body {
   height: 100%; 
   margin: 0 auto; 
   background-color: #282c34;
@@ -7,18 +7,6 @@ html, body, .grid-container {
   font-size: 12px;
 }
 
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr 0.9fr 1.1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      ". Labels Inputs ."
-      ". Buttons Buttons ."
-      ". Results Results .";
-  }
-  .Labels { grid-area: Labels; display: grid; }
-  .Inputs { grid-area: Inputs; display: grid;}
-  .Buttons { grid-area: Buttons; }
-  .Results { grid-area: Results; }
-
+.d-grid {
+  display: grid;
+}
