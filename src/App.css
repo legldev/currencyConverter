@@ -1,12 +1,268 @@
-
-html, body {
-  height: 100%; 
-  margin: 0 auto; 
-  background-color: #282c34;
-  color: white;
-  font-size: 12px;
+.App {
+  min-height: 100vh;
 }
 
-.d-grid {
+.converter-page {
+  align-items: center;
   display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 520px);
+  margin: 0 auto;
+  max-width: 1120px;
+  min-height: 100vh;
+  padding: 48px 24px;
+}
+
+.converter-hero {
+  color: #14213d;
+  max-width: 520px;
+}
+
+.eyebrow {
+  color: #84cc16;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin: 0 0 14px;
+  text-transform: uppercase;
+}
+
+.converter-hero h1 {
+  font-size: clamp(2.5rem, 7vw, 5.75rem);
+  font-weight: 850;
+  line-height: 0.96;
+  margin: 0;
+}
+
+.hero-copy {
+  color: #475569;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin: 24px 0 0;
+  max-width: 480px;
+}
+
+.converter-panel {
+  background: rgba(248, 250, 252, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.35);
+  color: #172033;
+  display: grid;
+  gap: 20px;
+  padding: 28px;
+}
+
+.amount-row,
+.select-field,
+.date-field {
+  display: grid;
+  gap: 8px;
+}
+
+.amount-row label,
+.select-field span,
+.date-field span {
+  align-items: center;
+  color: #475569;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.amount-input {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 64px;
+  overflow: hidden;
+}
+
+.amount-input span {
+  align-items: center;
+  align-self: stretch;
+  background: #e0f2fe;
+  color: #075985;
+  display: inline-flex;
+  font-weight: 850;
+  justify-content: center;
+  min-width: 76px;
+}
+
+.amount-input input,
+.select-field select,
+.date-field input {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+  font: inherit;
+  min-height: 50px;
+  padding: 0 14px;
+  width: 100%;
+}
+
+.amount-input input {
+  border: 0;
+  font-size: 1.55rem;
+  font-weight: 750;
+  min-width: 0;
+  outline: 0;
+}
+
+.amount-input:focus-within,
+.select-field select:focus,
+.date-field input:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.16);
+  outline: 0;
+}
+
+.currency-grid {
+  align-items: end;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 48px 1fr;
+}
+
+.icon-button,
+.primary-button,
+.secondary-button {
+  align-items: center;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 800;
+  gap: 8px;
+  justify-content: center;
+  min-height: 48px;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.icon-button:hover,
+.primary-button:hover,
+.secondary-button:hover {
+  transform: translateY(-1px);
+}
+
+.swap-button {
+  background: #0f172a;
+  color: #ffffff;
+  height: 50px;
+  width: 48px;
+}
+
+.actions {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr auto;
+}
+
+.primary-button {
+  background: #16a34a;
+  color: #ffffff;
+  padding: 0 18px;
+}
+
+.primary-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.secondary-button {
+  background: #e2e8f0;
+  color: #0f172a;
+  padding: 0 16px;
+}
+
+.status-region {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  min-height: 164px;
+  padding: 20px;
+}
+
+.result {
+  display: grid;
+  gap: 8px;
+}
+
+.result-label,
+.rate-date {
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.result strong {
+  color: #064e3b;
+  font-size: clamp(2rem, 7vw, 3.7rem);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.rate-line {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.empty-state,
+.error-message {
+  align-items: center;
+  color: #64748b;
+  display: flex;
+  font-weight: 700;
+  min-height: 120px;
+}
+
+.error-message {
+  color: #b91c1c;
+  margin: 0;
+}
+
+.spin {
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .converter-page {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    padding: 32px 16px;
+  }
+
+  .converter-hero {
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .converter-panel {
+    padding: 20px;
+  }
+
+  .currency-grid,
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .swap-button {
+    justify-self: stretch;
+    width: auto;
+  }
 }

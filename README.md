@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# Currency Converter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React + TypeScript currency converter built with Vite. It converts an amount between supported currencies using live or historical exchange-rate data from the Frankfurter API.
+
+## Features
+
+- Convert an amount between common currencies
+- Choose the latest available rate or a historical date
+- Swap source and destination currencies
+- Loading, validation, and error states
+- Responsive layout for desktop and mobile
+- Vercel-ready static deployment
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Vitest + Testing Library
+- Lucide React icons
+- Frankfurter exchange-rate API
+
+## Requirements
+
+- Node.js 24
+- npm
+
+## Getting Started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the local URL printed by Vite, usually:
+
+```text
+http://127.0.0.1:5173/
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run test
+npm run test:watch
+```
 
-### `npm start`
+- `npm run dev`: starts the Vite development server.
+- `npm run build`: runs TypeScript checks and creates a production build in `dist/`.
+- `npm run preview`: serves the production build locally.
+- `npm run test`: runs the test suite once.
+- `npm run test:watch`: runs tests in watch mode.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Data Source
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The app calls:
 
-### `npm test`
+```text
+https://api.frankfurter.dev/v1
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+No API key is required. The latest endpoint returns the latest available market date, which can be earlier than today depending on weekends, holidays, or data availability.
 
-### `npm run build`
+Example request:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```text
+https://api.frankfurter.dev/v1/latest?amount=100&from=USD&to=EUR
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This project is configured for Vercel with `vercel.json`.
 
-### `npm run eject`
+Vercel settings:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Framework: Vite
+- Install command: `npm install`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Node.js runtime: `24.x`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Deploy by importing the repository in Vercel, or from the project root:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+vercel
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+For production:
 
-## Learn More
+```bash
+vercel --prod
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```text
+.
+├── index.html
+├── public/
+├── src/
+│   ├── App.tsx
+│   ├── App.css
+│   ├── App.test.tsx
+│   ├── CurrencyConverter.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── setupTests.ts
+├── tsconfig.json
+├── vercel.json
+└── vite.config.ts
+```
 
-### Code Splitting
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The app is fully client-side and does not need serverless functions.
+- Currency support is intentionally limited to the currencies listed in `src/CurrencyConverter.tsx`.
+- Historical dates must be today or earlier.
